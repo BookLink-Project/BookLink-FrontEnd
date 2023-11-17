@@ -27,15 +27,21 @@ const BookRegisterForm = () => {
   const feeRef = useRef(null);
 
   useEffect(() => {
-    reset({ ...bookInfo, rent_signal: true, rent_location: address });
+    reset({
+      ...bookInfo,
+      rent_signal: true,
+      rent_location: address,
+      book_rating: '최상급',
+    });
   }, []);
 
   const onSubmit = async (data) => {
     console.log(data);
     const localStringFee = feeRef.current.value;
     const fee = Number(localStringFee.split(',').join(''));
-    setValue('rental_fee', fee);
+    console.log(fee);
     const { images, ...bookDto } = data;
+    bookDto.rental_fee = fee;
     bookDto.min_date = Number(bookDto.min_date);
     bookDto.max_date = Number(bookDto.max_date);
     console.log(bookDto);
@@ -76,17 +82,33 @@ const BookRegisterForm = () => {
     setValue('rent_location', address);
     setAddressClick(false);
   };
-
   /*{
+    "isbn": "9788959897179",
+    "cover": "https://image.aladin.co.kr/product/32443/92/cover/8959897175_3.jpg",
+    "category_name": "경제경영",
+    "book_title": "트렌드 코리아 2024 - 청룡을 타고 비상하는 2024를 기원하며!",
+    "authors": "김난도, 전미영, 최지혜, 이수진, 권정윤, 한다혜, 이준영, 이향은, 이혜원, 추예린, 전다현 (지은이)",
+    "publisher": "미래의창",
+    "price_sales": 19000,
+    "pud_date": "2023-10-05",
+    "rent_signal": true,
+    "rent_location": "서울 강남구 삼성로 11",
+    "recommendation": "좋아요",
+    "book_status": "양호",
+    "min_date": 14,
+    "max_date": 14,
+    "rent_method": "1:1 채팅으로 ㄱㄱ"
+}
+  {
     image
-    "book_title": "불편한 편의점 2 (단풍 에디션)", ok
-    "authors": "김호연 (지은이)",             ok
-    "pud_date": "2022-08-10",               ok
-    "isbn": "9791161571188",              ok
-    "price_sales": 12600,                   ok
+    "book_title": "불편한 편의점 2 (단풍 에디션)", ok  0
+    "authors": "김호연 (지은이)",             ok      0
+    "pud_date": "2022-08-10",               ok       0
+    "isbn": "9791161571188",              ok         0
+    "price_sales": 12600,                   ok      0
     "cover": "https://image.aladin.co.kr/product/29045/74/cover/k192836746_2.jpg", ok
-    "category_name": "국내도서>소설/시/희곡",          ok
-    "publisher": "나무옆의자",                        ok
+    "category_name": "국내도서>소설/시/희곡",          ok  0
+    "publisher": "나무옆의자",                        ok  0
     "recommendation": "출간 후 1년이 넘도록 독자의 사랑을 받으며 베스트셀러 상위권을 지키고 있는 소설, 김호연 작가의 『불편한 편의점』이 그 두 번째 이야기로 다시 찾아왔다. 청파동 골목의 작은 편의점을 무대로 힘겨운 시대를 살아가는 우리 이웃들의 삶을 따뜻하고 유쾌하게 그렸다.", ok
     "rent_signal": "True",                            ok
     "book_rating": "최상급",                          ok
