@@ -1,7 +1,7 @@
 import { useState, useContext, useRef } from 'react';
-import { useParams /*useNavigate*/ } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { alertForm } from '../../../utils/alert';
+import { useParams } from 'react-router-dom';
+import { useUserStore } from '../../../store/useUserStore';
+
 import * as Styled from './Styled';
 import {
   bookClubsCommentRegister,
@@ -13,12 +13,12 @@ import { CommunitiesDetailContext } from '../../../context/communitiesDetailCont
 const CommunitiesCommentForm = () => {
   const { id } = useParams();
   const commentRef = useRef(null);
-  //const navigate = useNavigate();
+
   const { info, setInfo } = useContext(CommunitiesDetailContext);
   const { category, replies, reply_cnt } = info;
   const [sortStatus, setSortStatus] = useState(0); //[기본은 공감순, 0일씨 공감순, 1일씨 최신순]
-  const { isLoggedIn } = useSelector((state) => state.USER);
-
+  const isLogin = useUserStore((state) => state.isLogin);
+  console.log(isLogin);
   console.log(info);
 
   const onSortHandler = (e) => {
@@ -31,8 +31,10 @@ const CommunitiesCommentForm = () => {
 
   const onCommentPost = async (e) => {
     let data1;
-    if (e.key === 'Enter') {
-      if (isLoggedIn) {
+    console.log(commentRef.current.value);
+    console.log(e.type);
+    if (e.key === 'Enter' || e.type === 'click') {
+      if (isLogin) {
         const Content = commentRef.current.value;
         if (category === '독서 모임') {
           const { data } = await bookClubsCommentRegister(Content, id, 0);
@@ -62,6 +64,7 @@ const CommunitiesCommentForm = () => {
           ...info.replies,
         ];
         setInfo({ ...info, reply_cnt: reply_cnt + 1, replies });
+        commentRef.current.value = '';
       }
     }
   };
@@ -75,11 +78,19 @@ const CommunitiesCommentForm = () => {
         <Styled.WriterImg>
           <img src="https://soccerquick.s3.ap-northeast-2.amazonaws.com/1689834239634.png" />
         </Styled.WriterImg>
-        <Styled.CommentInputForm
-          placeholder="댓글 작성하기"
-          ref={commentRef}
-          onKeyDown={onCommentPost}
-        />
+        <Styled.Comment>
+          <Styled.CommentInputForm
+            placeholder="댓글 작성하기"
+            ref={commentRef}
+            onKeyDown={onCommentPost}
+          />
+          <Styled.CommentButtonForm>
+            <Styled.CommentButtons>
+              <span>취소</span>
+              <button onClick={onCommentPost}>작성하기</button>
+            </Styled.CommentButtons>
+          </Styled.CommentButtonForm>
+        </Styled.Comment>
       </Styled.CommentPostForm>
       <Styled.CommentSortForm onClick={onSortHandler}>
         <Styled.Sort isClicked={sortStatus === 0} value="0">

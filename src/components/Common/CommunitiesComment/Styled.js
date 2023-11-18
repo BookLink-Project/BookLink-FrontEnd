@@ -27,13 +27,36 @@ export const WriterImg = styled.div`
     border-radius: 3.428rem;
   }
 `;
+export const Comment = styled.div`
+  font-size: 0.857rem;
+`;
 export const CommentInputForm = styled.input`
   box-sizing: border-box;
   margin-left: 0.857rem;
-  height: 1.714rem;
+  margin-bottom: 0.643rem;
   font-size: 0.857rem;
+  height: 1.714rem;
   width: 72rem;
   border-bottom: 0.143rem solid #848484;
+`;
+export const CommentButtonForm = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+export const CommentButtons = styled.div`
+  color: #d9d9d9;
+
+  span {
+    margin-right: 0.857rem;
+    color: #d9d9d9;
+  }
+  button {
+    color: #d9d9d9;
+    font-size: 0.857rem;
+    padding: 0.29rem 0.57rem;
+    border-radius: 0.929rem;
+    background: #848484;
+  }
 `;
 export const CommentSortForm = styled.ul`
   margin-top: 2.857rem;
