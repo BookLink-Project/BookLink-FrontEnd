@@ -19,7 +19,7 @@ const HeaderContainer = () => {
   const { image } = data.profile;
 
   const isLogin = useUserStore((state) => state.isLogin);
-  const nickname = useUserStore((state) => state.nickname);
+  const { nickname } = useUserStore((state) => state.userInfo);
 
   const path = useLocation().pathname;
 

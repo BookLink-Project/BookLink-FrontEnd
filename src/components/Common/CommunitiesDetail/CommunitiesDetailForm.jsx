@@ -10,7 +10,7 @@ import {
   freesDelete,
   bookReportsDelete,
 } from '../../../lib/apis/communities/delete/communitiesDeleteService';
-import { useSelector } from 'react-redux';
+import { useUserStore } from '../../../store/useUserStore';
 
 const CommunitiesDetailForm = () => {
   const { info } = useContext(CommunitiesDetailContext);
@@ -31,8 +31,10 @@ const CommunitiesDetailForm = () => {
   console.log(info);
   const { id } = useParams();
   const navigate = useNavigate();
-  const { nickname } = useSelector((state) => state.USER);
+  const { nickname } = useUserStore((state) => state.userInfo);
+
   const [threePointClick, setThreePointClick] = useState(false);
+  console.log(nickname);
 
   const onDelete = async () => {
     if (category === '자유글') {

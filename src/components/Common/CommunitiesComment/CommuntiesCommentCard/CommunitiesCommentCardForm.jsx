@@ -6,7 +6,7 @@ import Thumbs from '../../../../images/thumbs.svg';
 import LikeThumbs from '../../../../images/liked_thumbs.svg';
 import DownToggle from '../../../../images/down_toggle.svg';
 import UpToggle from '../../../../images/up_toggle.svg';
-import { useSelector } from 'react-redux';
+import { useUserStore } from '../../../../store/useUserStore';
 import { getDateDistance } from '../../../../utils/date';
 import {
   bookClubsCommentRegister,
@@ -39,7 +39,7 @@ const CommunitiesCommentCardForm = ({
   const contentRef = useRef(null);
   const replyRef = useRef(null);
   const { id } = useParams();
-  const { isLoggedIn, nickname } = useSelector((state) => state.USER);
+  const { nickname } = useUserStore((state) => state.userInfo);
 
   const [contentEditable, setContentEditable] = useState(false);
   const [replyStatus, setReplyStatus] = useState(false);

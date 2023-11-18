@@ -9,13 +9,13 @@ import AddressSearchForm from '../../AddressSearch/AddressSearchForm';
 import { useLocation } from 'react-router-dom';
 import { bookRegister } from '../../../lib/apis/booksService';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useUserStore } from '../../../store/useUserStore';
 import { NumericFormat } from 'react-number-format';
 const BookRegisterForm = () => {
   const { register, handleSubmit, setValue, getValues, reset } = useForm({
     mode: 'onChange',
   });
-  const address = useSelector((state) => state.USER.address);
+  const { address } = useUserStore((state) => state.userInfo);
   const location = useLocation();
   const { bookInfo } = location.state;
   console.log(bookInfo);

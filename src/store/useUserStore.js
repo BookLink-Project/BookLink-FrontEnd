@@ -5,15 +5,15 @@ export const useUserStore = create()(
   persist(
     (set) => ({
       isLogin: false,
-
+      userInfo: {},
       setUserInfo: (state) =>
         set({
-          ...state,
+          userInfo: state,
         }),
 
-      setIsLogin: () =>
+      setIsLogin: (state) =>
         set({
-          isLogin: true,
+          isLogin: state,
         }),
 
       removeUserInfo: () =>
