@@ -1,24 +1,29 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export const useUserStore = create()(
+const initialState = {
+  isLogin: false,
+  userInfo: { address: '', email: '', nickname: '', name: '' },
+};
+
+export const useUserStore = create(
   persist(
     (set) => ({
-      isLogin: false,
-      userInfo: {},
-      setUserInfo: (state) =>
-        set({
-          userInfo: state,
-        }),
+      ...initialState,
+      setUserInfo: (payload) =>
+        set(({ userInfo }) => ({
+          userInfo: { ...userInfo, ...payload },
+        })),
 
-      setIsLogin: (state) =>
+      setIsLogin: (isLogin) =>
         set({
-          isLogin: state,
+          isLogin: isLogin,
         }),
 
       removeUserInfo: () =>
         set(
           ({ setUserInfo, removeUserInfo, setIsLogin }) => ({
+            ...initialState,
             setUserInfo,
             removeUserInfo,
             setIsLogin,
