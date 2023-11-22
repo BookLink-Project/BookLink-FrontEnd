@@ -17,3 +17,5 @@ export const Input = styled.input`
   box-sizing: border-box;
   border: 0.143rem solid #d9d9d9;
 `;
+
+export const BookInfoContainerDiv = styled.div``;

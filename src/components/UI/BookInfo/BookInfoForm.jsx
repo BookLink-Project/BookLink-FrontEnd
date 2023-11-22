@@ -1,8 +1,16 @@
 import * as Styled from './Styled';
 
-const BookInfoForm = ({ cover, book_title, authors, publisher, pud_date }) => {
+const BookInfoForm = ({
+  onClick,
+  isClicked,
+  cover,
+  book_title,
+  authors,
+  publisher,
+  pud_date,
+}) => {
   return (
-    <Styled.BookInfoDiv>
+    <Styled.BookInfoDiv onClick={onClick} isClicked={isClicked}>
       <Styled.BookImg src={cover} />
       <Styled.BookDetailDiv>
         <Styled.BookTitle>{book_title}</Styled.BookTitle>

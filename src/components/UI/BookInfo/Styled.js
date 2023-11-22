@@ -2,7 +2,8 @@ import styled from 'styled-components';
 export const BookInfoDiv = styled.div`
   margin-top: 1.714rem;
   height: 11.286rem;
-  border: 1px solid #d9d9d9;
+  border: ${({ isClicked }) =>
+    isClicked ? '0.071rem solid #00e37d' : '0.071rem solid #d9d9d9'};
   border-radius: 0.571rem;
   display: flex;
 `;
@@ -14,7 +15,7 @@ export const BookImg = styled.img`
 export const BookDetailDiv = styled.div`
   height: 9.571rem;
   width: 91.571rem;
-  border: 1px solid #d9d9d9;
+  //border: 1px solid #d9d9d9;
   margin: 0.857rem;
 `;
 export const BookTitle = styled.div`
