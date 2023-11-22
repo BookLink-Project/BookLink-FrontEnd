@@ -26,10 +26,10 @@ const RegisterForm = () => {
   });
 
   const navigate = useNavigate();
-  console.log(errors);
   const [doubleEmailCheck, setDoubleEmailCheck] = useState(false);
   const [authCheck, setAuthCheck] = useState(false);
   const [searchBtnClick, setSearchBtnClick] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const onSubmit = async (data) => {
     const { basicAddress, detailAddress, ...rest } = data;
@@ -54,8 +54,12 @@ const RegisterForm = () => {
   const handleEmailCheck = async () => {
     if (getValues('email') && !errors.email) {
       const data1 = await emailDoubleCheck(getValues('email'));
-      if (data1) setDoubleEmailCheck(true);
-      console.log(data1);
+      if (data1.error) {
+        alert(data1.message);
+      } else {
+        alert(data1);
+        setDoubleEmailCheck(true);
+      }
     }
   };
   const handleAuthNum = async () => {
@@ -71,13 +75,26 @@ const RegisterForm = () => {
       getValues('authNum')
     );
     console.log(data1);
+    if (data1.status !== 'OK') {
+      alert(data1.message);
+    } else {
+      alert('인증번호가 확인이 되었습니다.');
+      console.log(disabled);
+      setDisabled((state) => !state);
+      console.log(disabled);
+    }
   };
   const nicknameCheck = async () => {
     if (getValues('nickname')) {
       const data1 = await nicknameDoubleCheck(getValues('nickname'));
-      console.log(data1);
+      if (data1.error) {
+        alert(data1.message);
+      } else {
+        alert(data1);
+      }
     }
   };
+
   return (
     <Styled.MainContainerDiv>
       <Styled.MainContentsDiv>
@@ -118,7 +135,11 @@ const RegisterForm = () => {
               {errors.authNum && (
                 <Styled.Error>{errors.authNum.message}</Styled.Error>
               )}
-              <Styled.Btn type="button" onClick={handleAuthNumConfirm}>
+              <Styled.Btn
+                type="button"
+                onClick={handleAuthNumConfirm}
+                disabled={disabled}
+              >
                 인증번호 확인
               </Styled.Btn>
             </Styled.noTagDiv>

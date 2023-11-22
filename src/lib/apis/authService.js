@@ -7,7 +7,8 @@ export const signUp = async (user) => {
     const { data } = await axiosJsonInstance.post(`/members/register`, user);
     return data;
   } catch (error) {
-    console.log(error.response);
+    console.error(error);
+    return error.response;
   }
 };
 
@@ -20,7 +21,8 @@ export const emailAuth = async (email) => {
     });
     return data;
   } catch (error) {
-    console.log(error.response);
+    console.error(error);
+    return error.response.data;
   }
 };
 // [ 이메일 인증 코드 확인]
@@ -32,7 +34,8 @@ export const AuthNumConfirm = async (email, num) => {
     });
     return data;
   } catch (error) {
-    console.log(error.response);
+    console.error(error);
+    return error.response.data;
   }
 };
 
@@ -46,9 +49,10 @@ export const emailDoubleCheck = async (email) => {
         authentication_number: null,
       }
     );
-    return data;
+    return data.message;
   } catch (error) {
-    console.log(error.response);
+    console.error(error);
+    return error.response.data;
   }
 };
 
@@ -59,9 +63,10 @@ export const nicknameDoubleCheck = async (nickname) => {
       'members/nickname/double-check',
       nickname
     );
-    return data;
+    return data.message;
   } catch (error) {
-    console.log(error.response);
+    console.error(error);
+    return error.response.data;
   }
 };
 
