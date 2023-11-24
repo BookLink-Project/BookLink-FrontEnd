@@ -1,5 +1,8 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import * as Styled from './Styled';
+
+import { startMessagePostFetch } from '../../../../lib/apis/message/startMessagePostFetch';
 import { ko } from 'date-fns/locale';
 
 const RentApplyModal = ({
@@ -8,11 +11,43 @@ const RentApplyModal = ({
   duration,
   selectDate,
   closeModal,
+  writer,
 }) => {
   const selected = duration.filter((count) => selectDate === count.toString());
+  const { pathname } = useLocation();
 
-  const handleSendMessage = () => {
-    // 쪽지 보내기 api post
+  const rentPath = pathname.split('/')[2];
+
+  const handleSendMessage = async () => {
+    try {
+      const messageParams = {
+        content: '',
+        receiver: writer,
+        rent_date: selected[0],
+        rent_id: parseInt(rentPath),
+      };
+
+      console.log(messageParams);
+
+      const res = await startMessagePostFetch(messageParams);
+
+      const { status, data } = res.data;
+
+      console.log(status, data);
+
+      alert('쪽지를 보냈습니다!');
+      closeModal();
+    } catch (error) {
+      console.error(error);
+      if (error.response.status === 400) {
+        alert('이미 쪽지방에 존재하는 쪽지에요. 쪽지함을 확인해주세요.');
+        closeModal();
+        return;
+      }
+
+      alert('쪽지를 보내는데 에러가 발생했어요');
+      return;
+    }
   };
 
   return (

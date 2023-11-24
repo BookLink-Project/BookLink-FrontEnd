@@ -9,6 +9,7 @@ const BackDrop = ({
   title = '',
   rentalFee = 0,
   selectDate = 0,
+  writer,
 }) => {
   return (
     <Styled.BackDropDiv>
@@ -18,6 +19,7 @@ const BackDrop = ({
       ) : (
         <RentApplyModal
           title={title}
+          writer={writer}
           rentalFee={rentalFee}
           duration={duration}
           selectDate={selectDate}

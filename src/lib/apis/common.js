@@ -2,9 +2,12 @@ import axios from 'axios';
 import { useUserStore } from '../../store/useUserStore';
 import { logout } from '../../lib/apis/authService';
 
+const baseURL = import.meta.env.VITE_SERVER_URL;
+console.log(baseURL);
 const getAxiosInstance = (contentType) => {
   const config = {
     baseURL: '/api/v1',
+    // baseURL,
     headers: {
       'Content-Type': contentType,
     },
@@ -25,6 +28,7 @@ export const axiosAuthInstance = getAxiosInstance(
 
 axiosJsonInstance.interceptors.response.use(async (config) => {
   const { removeUserInfo } = useUserStore.getState();
+  console.log(config);
   if (config.status.toString().startsWith('4')) {
     await logout();
     removeUserInfo();

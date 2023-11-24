@@ -13,9 +13,15 @@ const CommunityBanner = () => {
         </div>
       </Styled.CommunityBannerTitleDiv>
       <Styled.CommunityBannerButtonDiv>
-        <button onClick={() => navigateToPage('/books/register')}>
-          <span>독서 모임 모집하기</span>
+        <button
+          onClick={() => navigateToPage('/communities')}
+          style={{ marginRight: '12px' }}
+        >
+          <span>커뮤니티 바로가기</span>
         </button>
+        {/* <button onClick={() => navigateToPage('/books/register')}>
+          <span>독서 모임 모집하기</span>
+        </button> */}
       </Styled.CommunityBannerButtonDiv>
     </Styled.CommunityBannerDiv>
   );

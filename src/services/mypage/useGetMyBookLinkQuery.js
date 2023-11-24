@@ -12,6 +12,8 @@ export const useGetMyBookLinkQuery = () =>
         data: { data: { profile: false } },
       };
 
+      console.log(res);
+
       return res.data.data;
     },
   });

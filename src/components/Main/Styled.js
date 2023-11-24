@@ -281,6 +281,13 @@ export const MainReportImageDiv = styled.div`
   border: 4px solid #003c74;
   background: #00a779;
   box-shadow: 0px 0px 120px 0px rgba(0, 60, 116, 0.35) inset;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1.71429rem;
+  }
 `;
 
 export const MainReportListDiv = styled.div`

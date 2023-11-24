@@ -1,5 +1,6 @@
 import { useNavigatePage } from '../../hooks/useNavigatePage';
 import * as Styled from './Styled';
+import banner from '../../images/main-graphic-1.svg';
 
 const RedirectReport = () => {
   const { navigateToPage } = useNavigatePage();
@@ -18,7 +19,7 @@ const RedirectReport = () => {
       </p>
       <Styled.MainReportContent>
         <Styled.MainReportImageDiv>
-          {/* <img src="" alt="" /> */}
+          <img src={banner} alt="banner" />
         </Styled.MainReportImageDiv>
         <Styled.MainReportListDiv>
           <ul>

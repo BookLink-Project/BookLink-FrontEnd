@@ -8,6 +8,7 @@ const AsideRight = ({
   title,
   rentalFee,
   rentLocation,
+  writer,
   rentMethod,
   maxDate,
   minDate,
@@ -82,6 +83,7 @@ const AsideRight = ({
           duration={durationOptions}
           title={title}
           rentalFee={rentalFee}
+          writer={writer}
           selectDate={selectDurate}
         />
       )}

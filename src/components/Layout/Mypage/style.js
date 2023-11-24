@@ -49,7 +49,7 @@ export const Wrapper = styled.div`
       min-height: 40rem;
       margin-top: 2.57rem;
       padding-bottom: 0px;
-      justify-content: center;
+      flex-direction: column;
       border-radius: 0.57143rem;
       border-top: 2px solid #00e37d;
       background: #fff;
@@ -68,6 +68,22 @@ export const Wrapper = styled.div`
           text-align: center;
           font-size: 1.42857rem;
           font-weight: 500;
+        }
+      }
+
+      & .message-list {
+        width: 100%;
+
+        & div:last-child {
+          margin-left: 40px;
+        }
+
+        & .item {
+          display: flex;
+          border-bottom: 1px solid #dbdbdb;
+          padding: 12px 12px;
+
+          cursor: pointer;
         }
       }
     }

@@ -41,11 +41,7 @@ const BookAside = () => {
           </button>
         </Styled.AsideCardTitle>
 
-        <div>
-          <RentInfoCard />
-          <RentInfoCard />
-          <RentInfoCard />
-        </div>
+        <div>대여정보가 없어요.</div>
       </Styled.BookAsideSection>
 
       <Styled.BookAsideSection>

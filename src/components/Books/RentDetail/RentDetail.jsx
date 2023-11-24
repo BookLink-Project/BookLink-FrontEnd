@@ -79,6 +79,7 @@ const RentDetail = () => {
           </Styled.RentDetailCotent>
           <AsideRight
             title={title}
+            writer={writer}
             rentalFee={rentalFee}
             rentLocation={rentLocation}
             rentMethod={rentMethod}
